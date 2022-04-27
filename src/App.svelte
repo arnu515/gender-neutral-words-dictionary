@@ -1,4 +1,12 @@
 <script lang="ts">
+import Navbar from '$lib/Navbar.svelte'
+import Index from '$pages/Index.svelte'
+import { Router, Route } from 'svelte-navigator'
 </script>
 
-<h1 class="text-center text-5xl my-8 font-bold">Hello, world!</h1>
+<Router>
+	<Navbar />
+	<Route path="/">
+		<Index />
+	</Route>
+</Router>
