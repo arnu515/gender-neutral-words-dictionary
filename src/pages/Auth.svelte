@@ -36,14 +36,14 @@ async function submit(e: Event) {
 			await appwrite.account.create(
 				'unique()',
 				data.email.trim(),
-				data.password.trim(),
+				data.password,
 				data.username.trim()
 			)
 			await loadUser()
 			loading = false
 			goto('/')
 		} else {
-			await appwrite.account.createSession(data.email.trim(), data.password.trim())
+			await appwrite.account.createSession(data.email.trim(), data.password)
 			await loadUser()
 			loading = false
 			goto('/')
