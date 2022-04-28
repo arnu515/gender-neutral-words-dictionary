@@ -1,10 +1,10 @@
 <h1
-	class="my-4 text-center text-2xl font-bold sm:my-6 sm:text-3xl md:my-8 md:text-4xl lg:my-12 lg:text-5xl"
+	class="m-4 text-center text-2xl font-bold sm:my-6 sm:text-3xl md:my-8 md:text-4xl lg:my-12 lg:text-5xl"
 >
 	Gender Neutral Words Dictionary
 </h1>
 
-<form class="my-4">
+<form class="m-4">
 	<p class="my-8 text-center text-lg sm:text-xl lg:text-2xl">
 		Enter a word to get a gender neutral alternative
 	</p>
