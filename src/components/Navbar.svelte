@@ -7,8 +7,8 @@ import user from '$lib/user.store'
 	<Link to="/" class="brand">GenderNeutral Words</Link>
 	<ul>
 		<li>
-			<Link
-				to="https://github.com/arnu515/gender-neutral-words-dictionary"
+			<a
+				href="https://github.com/arnu515/gender-neutral-words-dictionary"
 				title="GitHub"
 				aria-label="GitHub"
 				class="nav-link"
@@ -40,7 +40,7 @@ import user from '$lib/user.store'
 						stroke-linejoin="round"
 					/>
 				</svg>
-			</Link>
+			</a>
 		</li>
 		<li>
 			<Link to="/new" class="nav-link" title="Add a word" aria-label="Add a word">
