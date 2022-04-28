@@ -64,7 +64,7 @@ import user from '$lib/user.store'
 		<li>
 			<Link
 				class="nav-link !bg-blue-500 !text-white"
-				to={$user ? '/profile' : '/authenticate'}
+				to={$user ? '/profile' : '/auth'}
 				title={$user?.name || 'Authenticate'}
 				aria-label={$user ? 'Profile' : 'Authenticate'}
 			>
