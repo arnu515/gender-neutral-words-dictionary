@@ -55,7 +55,7 @@ async function submit(e: Event) {
 }
 </script>
 
-<div class="mt-12 flex flex-col justify-center gap-8">
+<div class="mt-12 flex flex-col items-center justify-center gap-8">
 	<form
 		on:submit|preventDefault={submit}
 		class="m-4 max-w-screen-md rounded-xl border border-gray-500 px-6 py-3"
