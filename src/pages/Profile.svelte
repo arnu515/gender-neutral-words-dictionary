@@ -1,11 +1,6 @@
 <script lang="ts">
-import { useNavigate } from 'svelte-navigator'
 import user, { loadUser } from '$lib/user.store'
 import appwrite from '$lib/appwrite'
-
-const goto = useNavigate()
-
-if (!$user) goto('/auth')
 
 let username = '',
 	email = '',
