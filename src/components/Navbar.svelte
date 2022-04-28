@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Link } from 'svelte-navigator'
-import user from './user.store'
+import user from '$lib/user.store'
 </script>
 
 <nav class="navbar">

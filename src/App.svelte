@@ -1,5 +1,5 @@
 <script lang="ts">
-import Navbar from '$lib/Navbar.svelte'
+import Navbar from '$components/Navbar.svelte'
 import { loadUser } from '$lib/user.store'
 import Auth from '$pages/Auth.svelte'
 import Index from '$pages/Index.svelte'
