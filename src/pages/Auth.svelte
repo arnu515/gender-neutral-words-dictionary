@@ -1,5 +1,6 @@
 <script lang="ts">
 import appwrite from '$lib/appwrite'
+import { loadUser } from '$lib/user.store'
 import { useNavigate } from 'svelte-navigator'
 
 const goto = useNavigate()
@@ -38,10 +39,12 @@ async function submit(e: Event) {
 				data.password.trim(),
 				data.username.trim()
 			)
+			await loadUser()
 			loading = false
 			goto('/')
 		} else {
 			await appwrite.account.createSession(data.email.trim(), data.password.trim())
+			await loadUser()
 			loading = false
 			goto('/')
 		}
