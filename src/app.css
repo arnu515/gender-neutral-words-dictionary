@@ -4,6 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+	label {
+		@apply mb-1 block text-sm font-bold uppercase;
+	}
+	input {
+		@apply w-full rounded border border-gray-500 px-2 py-1 shadow outline-none focus:border-blue-500 focus:shadow-md;
+	}
+}
+
+@layer utilities {
+	.button {
+		@apply rounded border border-transparent bg-blue-500 px-2 py-1 text-white shadow outline-none focus:border-black focus:shadow-md;
+	}
+	.a {
+		@apply cursor-pointer border border-transparent text-blue-500 outline-none hover:text-blue-600 focus:border-blue-500;
+	}
+}
+
 * {
 	font-family: 'Poppins', sans-serif;
 }
