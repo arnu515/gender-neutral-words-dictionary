@@ -58,7 +58,7 @@ async function submit(e: Event) {
 <div class="mt-12 flex flex-col justify-center gap-8">
 	<form
 		on:submit|preventDefault={submit}
-		class="m-4 rounded-xl border border-gray-500 px-6 py-3"
+		class="m-4 max-w-screen-md rounded-xl border border-gray-500 px-6 py-3"
 	>
 		<h2 class="my-4 text-3xl font-semibold">
 			{!signup ? 'Sign In' : 'Sign Up'} with Email
@@ -111,7 +111,7 @@ async function submit(e: Event) {
 			>
 		</div>
 	</form>
-	<div class="m-4 rounded-xl border border-gray-500 px-6 py-3">
+	<div class="m-4 max-w-screen-md rounded-xl border border-gray-500 px-6 py-3">
 		<h2 class="my-4 text-3xl font-semibold">Use a third-party provider</h2>
 		<div class="flex flex-col gap-2">
 			<button
