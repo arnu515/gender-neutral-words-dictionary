@@ -1,11 +1,16 @@
-<nav>
-	<a href="/" class="brand">GenderNeutral Words</a>
+<script lang="ts">
+import { Link } from 'svelte-navigator'
+</script>
+
+<nav class="navbar">
+	<Link to="/" class="brand">GenderNeutral Words</Link>
 	<ul>
 		<li>
-			<a
-				href="https://github.com/arnu515/gender-neutral-words-dictionary"
+			<Link
+				to="https://github.com/arnu515/gender-neutral-words-dictionary"
 				title="GitHub"
 				aria-label="GitHub"
+				class="nav-link"
 			>
 				<svg
 					width="24"
@@ -34,10 +39,10 @@
 						stroke-linejoin="round"
 					/>
 				</svg>
-			</a>
+			</Link>
 		</li>
 		<li>
-			<a href="/new" title="Add a word" aria-label="Add a word">
+			<Link to="/new" class="nav-link" title="Add a word" aria-label="Add a word">
 				<svg
 					width="24"
 					height="24"
@@ -53,12 +58,12 @@
 						stroke-linejoin="round"
 					/>
 				</svg>
-			</a>
+			</Link>
 		</li>
 		<li>
-			<a
-				class="!bg-blue-500 !text-white"
-				href="/auth"
+			<Link
+				class="nav-link !bg-blue-500 !text-white"
+				to="/auth"
 				title="Authenticate"
 				aria-label="Authenticate"
 			>
@@ -83,26 +88,26 @@
 					/>
 					<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
 				</svg>
-			</a>
+			</Link>
 		</li>
 	</ul>
 </nav>
 
-<style lang="postcss">
-nav {
+<style lang="postcss" global>
+nav.navbar {
 	@apply mx-4 mt-4 flex max-w-screen-md items-center justify-between rounded-xl border border-gray-400 px-4 py-2 md:mx-auto;
-}
 
-a.brand {
-	@apply text-xl font-bold;
-	letter-spacing: 0.1ch;
-}
+	.brand {
+		@apply text-xl font-bold;
+		letter-spacing: 0.1ch;
+	}
 
-ul {
-	@apply flex items-center gap-2;
-	li {
-		a {
-			@apply block rounded-full bg-white p-2 text-black transition-all duration-500 hover:brightness-90;
+	ul {
+		@apply flex items-center gap-2;
+		li {
+			.nav-link {
+				@apply block rounded-full bg-white p-2 text-black transition-all duration-500 hover:brightness-90;
+			}
 		}
 	}
 }
