@@ -47,7 +47,8 @@ module.exports = async function (req, res) {
 
 		const user = await new sdk.Account(userClient).get()
 
-		const doc = await db.createDocument('queue', body.word.trim(), {
+		const doc = await db.createDocument('queue', 'unique()', {
+			word: body.word.trim(),
 			words: body.words,
 			userId: user.$id,
 			createdAt: Date.now()
