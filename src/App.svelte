@@ -7,6 +7,7 @@ import Profile from '$pages/Profile.svelte'
 import Protect from '$components/Protect.svelte'
 import { onMount } from 'svelte'
 import { Router, Route } from 'svelte-navigator'
+import New from '$pages/New.svelte'
 
 let loading = true
 
@@ -32,6 +33,11 @@ onMount(async () => {
 			<Protect noredirect>
 				<Profile />
 				<div slot="fallback"><Auth /></div>
+			</Protect>
+		</Route>
+		<Route path="/new">
+			<Protect>
+				<New />
 			</Protect>
 		</Route>
 	</Router>
