@@ -1,189 +1,219 @@
 {
-	"projectId": "gnwd",
-	"projectName": "Gender-Neutral Words Dictionary",
-	"collections": [
-		{
-			"$id": "words",
-			"$read": ["role:all"],
-			"$write": [],
-			"name": "Words",
-			"enabled": true,
-			"permission": "collection",
-			"attributes": [
-				{
-					"key": "words",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": true,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "userId",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "word",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				}
-			],
-			"indexes": [
-				{
-					"key": "word",
-					"type": "fulltext",
-					"status": "available",
-					"attributes": ["words"],
-					"orders": ["ASC"]
-				}
-			]
-		},
-		{
-			"$id": "queue",
-			"$read": ["role:all"],
-			"$write": [],
-			"name": "Word Queue",
-			"enabled": true,
-			"permission": "collection",
-			"attributes": [
-				{
-					"key": "words",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": true,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "userId",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "createdAt",
-					"type": "integer",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"min": -9223372036854776000,
-					"max": 9223372036854776000,
-					"default": null
-				},
-				{
-					"key": "word",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				}
-			],
-			"indexes": []
-		},
-		{
-			"$id": "reports",
-			"$read": [],
-			"$write": [],
-			"name": "Reports",
-			"enabled": true,
-			"permission": "collection",
-			"attributes": [
-				{
-					"key": "wordId",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "userId",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				}
-			],
-			"indexes": []
-		},
-		{
-			"$id": "votes",
-			"$read": ["role:all"],
-			"$write": [],
-			"name": "Votes",
-			"enabled": true,
-			"permission": "collection",
-			"attributes": [
-				{
-					"key": "wordId",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "userId",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "type",
-					"type": "string",
-					"status": "available",
-					"required": true,
-					"array": false,
-					"elements": ["negative", "positive"],
-					"format": "enum",
-					"default": null
-				}
-			],
-			"indexes": [
-				{
-					"key": "wordId",
-					"type": "unique",
-					"status": "available",
-					"attributes": ["wordId"],
-					"orders": ["ASC"]
-				}
-			]
-		}
-	],
-	"functions": [
-		{
-			"$id": "submit-word",
-			"name": "Submit word",
-			"runtime": "node-16.0",
-			"path": "functions/submit-word",
-			"entrypoint": "src/index.js",
-			"execute": ["role:all"],
-			"events": [],
-			"schedule": "",
-			"timeout": 30
-		}
-	]
+    "projectId": "gnwd",
+    "projectName": "Gender-Neutral Words Dictionary",
+    "collections": [
+        {
+            "$id": "words",
+            "$read": [
+                "role:all"
+            ],
+            "$write": [],
+            "name": "Words",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "words",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": true,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "word",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "word",
+                    "type": "fulltext",
+                    "status": "available",
+                    "attributes": [
+                        "words"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "queue",
+            "$read": [
+                "role:all"
+            ],
+            "$write": [],
+            "name": "Word Queue",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "words",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": true,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "createdAt",
+                    "type": "integer",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "min": -9223372036854776000,
+                    "max": 9223372036854776000,
+                    "default": null
+                },
+                {
+                    "key": "word",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "reports",
+            "$read": [],
+            "$write": [],
+            "name": "Reports",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "wordId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "votes",
+            "$read": [
+                "role:all"
+            ],
+            "$write": [],
+            "name": "Votes",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "wordId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "type",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "elements": [
+                        "negative",
+                        "positive"
+                    ],
+                    "format": "enum",
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "wordId",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "wordId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                }
+            ]
+        }
+    ],
+    "functions": [
+        {
+            "$id": "submit-word",
+            "name": "Submit word",
+            "runtime": "node-16.0",
+            "path": "functions/submit-word",
+            "entrypoint": "src/index.js",
+            "execute": [
+                "role:all"
+            ],
+            "events": [],
+            "schedule": "",
+            "timeout": 30
+        },
+        {
+            "$id": "approve-word",
+            "name": "Approve word in queue",
+            "runtime": "node-16.0",
+            "path": "functions/Approve word in queue",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 30
+        }
+    ]
 }
