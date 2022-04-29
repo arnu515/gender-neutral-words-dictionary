@@ -8,6 +8,7 @@ import Protect from '$components/Protect.svelte'
 import { onMount } from 'svelte'
 import { Router, Route } from 'svelte-navigator'
 import New from '$pages/New.svelte'
+import Word from '$pages/Word.svelte'
 
 let loading = true
 
@@ -39,6 +40,9 @@ onMount(async () => {
 			<Protect>
 				<New />
 			</Protect>
+		</Route>
+		<Route path="/word">
+			<Word />
 		</Route>
 	</Router>
 {/if}

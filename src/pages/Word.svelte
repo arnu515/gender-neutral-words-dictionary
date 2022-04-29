@@ -1,0 +1,90 @@
+<script lang="ts">
+import { onMount } from 'svelte'
+import { useNavigate, Link } from 'svelte-navigator'
+import { Query } from 'appwrite'
+import appwrite from '$lib/appwrite'
+import user from '$lib/user.store'
+import Word from '$components/Word.svelte'
+
+const goto = useNavigate()
+const q = (new URLSearchParams(window.location.search).get('q') || '').trim()
+let wordsLoading = true
+
+interface Word {
+	$id: string
+	word: string
+	words: string[]
+	userId: string
+	points: number
+	userHasVoted: 'no' | 'positive' | 'negative'
+}
+
+let words: Word[] = []
+
+onMount(async () => {
+	if (!q) goto('/')
+
+	const res = await appwrite.database.listDocuments('words', [Query.search('words', q)])
+	words = await Promise.all(
+		res.documents.map(async (i: any) => {
+			console.log(i)
+			let points = 0
+			let userHasVoted: Word['userHasVoted'] = 'no'
+			try {
+				const votes = await appwrite.database.listDocuments('points', [
+					Query.equal('wordId', i.$id)
+				])
+				for (const vote of votes.documents as any) {
+					console.log(vote)
+					if (vote.type === 'negative') points -= 1
+					if (vote.type === 'positive') points += 1
+					if (vote.userId === $user?.$id) userHasVoted = vote.type
+				}
+			} catch {}
+			return {
+				$id: i.$id,
+				userId: i.userId,
+				word: i.word,
+				words: i.words,
+				points,
+				userHasVoted
+			}
+		})
+	)
+
+	wordsLoading = false
+})
+
+async function onReport(id: string, message: string) {
+	alert('Reported succesfully')
+}
+
+async function onVote(id: string, type: Omit<Word['userHasVoted'], 'no'>) {
+	alert('Voted ' + type)
+}
+</script>
+
+<h1
+	class="m-4 text-center text-2xl font-bold sm:my-6 sm:text-3xl md:my-8 md:text-4xl lg:my-12 lg:text-5xl"
+>
+	Words for: {q}
+</h1>
+{#if wordsLoading}
+	<p class="mt-8 text-center text-lg text-gray-500">Loading...</p>
+{:else if words.length}
+	{#each words as word}
+		<Word
+			points={word.points}
+			userHasVoted={word.userHasVoted}
+			word={word.word}
+			words={word.words}
+			on:report={e => onReport(word.$id, e.detail)}
+			on:vote={e => onVote(word.$id, e.detail)}
+		/>
+	{/each}
+{:else}
+	<p class="mt-8 text-center text-lg text-gray-500 mx-4">
+		No words found for {q}. Try using an alternate spelling, or
+		<Link to="/new" class="a">contribute your own</Link>.
+	</p>
+{/if}
