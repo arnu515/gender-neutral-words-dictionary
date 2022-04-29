@@ -162,7 +162,15 @@
 					"default": null
 				}
 			],
-			"indexes": []
+			"indexes": [
+				{
+					"key": "wordId",
+					"type": "unique",
+					"status": "available",
+					"attributes": ["wordId"],
+					"orders": ["ASC"]
+				}
+			]
 		}
 	],
 	"functions": [
