@@ -57,7 +57,7 @@ module.exports = async function (req, res) {
 		await axios.post(req.env['DISCORD_WEBHOOK_URL'], {
 			content: `Someone just added a word to the word queue!\nThe word is: **${body.word.trim()}**\nTheir user id is: \`${
 				user.$id
-			}\``,
+			}\`\n\nID of the document is: \`${doc.$id}\``,
 			username: 'Word Queue'
 		})
 
