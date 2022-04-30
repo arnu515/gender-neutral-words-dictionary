@@ -102,7 +102,7 @@
 			"$write": [],
 			"name": "Reports",
 			"enabled": true,
-			"permission": "collection",
+			"permission": "document",
 			"attributes": [
 				{
 					"key": "wordId",
@@ -114,12 +114,12 @@
 					"default": null
 				},
 				{
-					"key": "userId",
+					"key": "message",
 					"type": "string",
 					"status": "available",
 					"required": true,
 					"array": false,
-					"size": 255,
+					"size": 2048,
 					"default": null
 				}
 			],
@@ -165,10 +165,24 @@
 			"indexes": [
 				{
 					"key": "wordId",
-					"type": "unique",
+					"type": "key",
 					"status": "available",
 					"attributes": ["wordId"],
 					"orders": ["ASC"]
+				},
+				{
+					"key": "userId",
+					"type": "key",
+					"status": "available",
+					"attributes": ["userId"],
+					"orders": ["ASC"]
+				},
+				{
+					"key": "userIdwordId",
+					"type": "key",
+					"status": "available",
+					"attributes": ["wordId", "userId"],
+					"orders": ["ASC", "ASC"]
 				}
 			]
 		}
