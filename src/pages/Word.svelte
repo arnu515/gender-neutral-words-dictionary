@@ -54,6 +54,8 @@ onMount(async () => {
 			}
 		})
 	)
+	//order words by points
+	words.sort((a, b) => b.points - a.points)
 
 	wordsLoading = false
 
