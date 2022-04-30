@@ -72,6 +72,10 @@ async function onReport(id: string, message: string) {
 
 async function onVote(id: string, type: Word['userHasVoted']) {
 	if (voteLoading) return
+	if (!$user) {
+		goto('/auth')
+		return
+	}
 	voteLoading = true
 	await appwrite.functions.createExecution(
 		'vote',
