@@ -9,6 +9,7 @@ import Word from '$components/Word.svelte'
 const goto = useNavigate()
 const q = (new URLSearchParams(window.location.search).get('q') || '').trim()
 let wordsLoading = true
+let voteLoading = false
 
 interface Word {
 	$id: string
@@ -61,15 +62,15 @@ async function onReport(id: string, message: string) {
 }
 
 async function onVote(id: string, type: Word['userHasVoted']) {
-	console.log(
-		await appwrite.functions.createExecution(
-			'vote',
-			JSON.stringify({
-				wordId: id,
-				vote: type
-			}),
-			false
-		)
+	if (voteLoading) return
+	voteLoading = true
+	await appwrite.functions.createExecution(
+		'vote',
+		JSON.stringify({
+			wordId: id,
+			vote: type
+		}),
+		false
 	)
 	words = words.map(i => {
 		if (i.$id === id) {
@@ -80,6 +81,7 @@ async function onVote(id: string, type: Word['userHasVoted']) {
 			return { ...i, userHasVoted: type, points }
 		} else return i
 	})
+	voteLoading = false
 }
 </script>
 
