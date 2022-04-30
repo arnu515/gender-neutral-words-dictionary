@@ -39,6 +39,7 @@ async function submit(e: Event) {
 				data.password,
 				data.username.trim()
 			)
+			await appwrite.account.createSession(data.email.trim(), data.password)
 			await loadUser()
 			loading = false
 			goto('/')
