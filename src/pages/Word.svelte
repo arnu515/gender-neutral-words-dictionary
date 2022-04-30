@@ -58,7 +58,11 @@ onMount(async () => {
 })
 
 async function onReport(id: string, message: string) {
-	alert('Reported succesfully')
+	await appwrite.database.createDocument('reports', 'unique()', {
+		wordId: id,
+		message
+	})
+	alert('Reported successfully.')
 }
 
 async function onVote(id: string, type: Word['userHasVoted']) {
