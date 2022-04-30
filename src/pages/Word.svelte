@@ -31,9 +31,10 @@ onMount(async () => {
 			let points = 0
 			let userHasVoted: Word['userHasVoted'] = 'no'
 			try {
-				const votes = await appwrite.database.listDocuments('points', [
+				const votes = await appwrite.database.listDocuments('votes', [
 					Query.equal('wordId', i.$id)
 				])
+				console.log(votes)
 				for (const vote of votes.documents as any) {
 					console.log(vote)
 					if (vote.type === 'negative') points -= 1
@@ -59,8 +60,26 @@ async function onReport(id: string, message: string) {
 	alert('Reported succesfully')
 }
 
-async function onVote(id: string, type: Omit<Word['userHasVoted'], 'no'>) {
-	alert('Voted ' + type)
+async function onVote(id: string, type: Word['userHasVoted']) {
+	console.log(
+		await appwrite.functions.createExecution(
+			'vote',
+			JSON.stringify({
+				wordId: id,
+				vote: type
+			}),
+			false
+		)
+	)
+	words = words.map(i => {
+		if (i.$id === id) {
+			let points = i.points
+			if (type === 'positive') points += i.userHasVoted === 'negative' ? 2 : 1
+			if (type === 'negative') points -= i.userHasVoted === 'positive' ? 2 : 1
+			if (type === 'no') points -= i.userHasVoted === 'positive' ? 1 : -1
+			return { ...i, userHasVoted: type, points }
+		} else return i
+	})
 }
 </script>
 

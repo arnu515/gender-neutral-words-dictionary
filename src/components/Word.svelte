@@ -54,7 +54,7 @@ function copyWord() {
 				class={userHasVoted === 'positive'
 					? 'bg-orange-500 text-white border-transparent hover:bg-orange-600'
 					: 'text-gray-500 hover:text-orange-300 border-gray-300 hover:bg-gray-200'}
-				on:click={() => d('vote', 'positive')}
+				on:click={() => d('vote', userHasVoted === 'positive' ? 'no' : 'positive')}
 				style="border-top-right-radius: 0; border-bottom-right-radius: 0"
 				title="Upvote"
 				aria-label="Upvote"
@@ -80,7 +80,7 @@ function copyWord() {
 				class={userHasVoted === 'negative'
 					? 'bg-blue-500 text-white border-transparent hover:bg-blue-600'
 					: 'text-gray-500 hover:text-blue-300 border-gray-300 hover:bg-gray-200'}
-				on:click={() => d('vote', 'negative')}
+				on:click={() => d('vote', userHasVoted === 'negative' ? 'no' : 'negative')}
 				style="border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -1px"
 				title="Downvote"
 				aria-label="Downvote"
