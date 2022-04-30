@@ -29,16 +29,13 @@ onMount(async () => {
 	const res = await appwrite.database.listDocuments('words', [Query.search('words', q)])
 	words = await Promise.all(
 		res.documents.map(async (i: any) => {
-			console.log(i)
 			let points = 0
 			let userHasVoted: Word['userHasVoted'] = 'no'
 			try {
 				const votes = await appwrite.database.listDocuments('votes', [
 					Query.equal('wordId', i.$id)
 				])
-				console.log(votes)
 				for (const vote of votes.documents as any) {
-					console.log(vote)
 					if (vote.type === 'negative') points -= 1
 					if (vote.type === 'positive') points += 1
 					if (vote.userId === $user?.$id) userHasVoted = vote.type
